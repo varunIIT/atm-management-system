@@ -5,10 +5,10 @@ const session=require('express-session')
 
 app.set('view engine','hbs')
 
-require('./public/db/conn')
-const {authRoute}=require('./public/routers/authRoute')
-const {bankRoute}=require('./public/routers/bankRoute')
-const{withdrawalRoute}=require('./public/routers/withdrawalRoute')
+require('./src/db/conn')
+const {authRoute}=require('./src/routers/authRoute')
+const {bankRoute}=require('./src/routers/bankRoute')
+const{withdrawalRoute}=require('./src/routers/withdrawalRoute')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))  //body parser
 
