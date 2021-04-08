@@ -1,0 +1,37 @@
+const express=require('express')
+const app=express()
+const port=5000
+const session=require('express-session')
+
+app.set('view engine','hbs')
+
+require('./public/db/conn')
+const {authRoute}=require('./public/routers/authRoute')
+const {bankRoute}=require('./public/routers/bankRoute')
+
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))  //body parser
+
+app.use(session({
+    resave: true,
+    saveUninitialized: true,
+    secret: '24knb6k247b2k7b2k7bk247hb2kh7b2',
+  }))
+app.use('/',authRoute)
+app.use('/',bankRoute)
+
+
+
+
+
+
+
+
+app.get('/',(req,res)=>{
+    res.send("hello")
+
+})
+
+app.listen(port,()=>{
+    console.log(`listening at http://localhost:${port}`)
+})
