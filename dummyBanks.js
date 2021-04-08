@@ -2,18 +2,22 @@ const bank1=[
     {
         userId:1,
         pin:12,
-        name:'Varun'
+        name:'Varun',
+        amount:50000
+
     },
     {
         userId:2,
         pin:123,
-        name:'Kunal'
+        name:'Kunal',
+        amount:50000
         
     },
     {
             userId:3,
             pin:1234,
-            name:'Maya'
+            name:'Maya',
+            amount:50000
             
         }
 
@@ -22,18 +26,21 @@ const bank2=[
     {
         userId:12,
         pin:12,
-        name:'Rahul'
+        name:'Rahul',
+        amount:50000
     },
     {
         userId:23,
         pin:123,
-        name:'Kapil'
+        name:'Kapil',
+        amount:50000
         
     },
     {
             userId:34,
             pin:1234,
-            name:'Rohan'
+            name:'Rohan',
+            amount:50000
             
         }
 

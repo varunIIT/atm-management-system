@@ -9,6 +9,7 @@ authRoute.post('/login',(req,res)=>{
     }
     else{
       req.session.user=response.data
+      req.session.user.bankName=req.body.bankName
       res.redirect('/')
     }
     

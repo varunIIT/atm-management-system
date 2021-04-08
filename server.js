@@ -8,7 +8,7 @@ app.set('view engine','hbs')
 require('./public/db/conn')
 const {authRoute}=require('./public/routers/authRoute')
 const {bankRoute}=require('./public/routers/bankRoute')
-
+const{withdrawalRoute}=require('./public/routers/withdrawalRoute')
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))  //body parser
 
@@ -19,8 +19,7 @@ app.use(session({
   }))
 app.use('/',authRoute)
 app.use('/',bankRoute)
-
-
+app.use('/',withdrawalRoute)
 
 
 
@@ -28,7 +27,7 @@ app.use('/',bankRoute)
 
 
 app.get('/',(req,res)=>{
-    res.send("hello")
+    res.render('withdrawal')
 
 })
 
