@@ -21,16 +21,6 @@ app.use('/',authRoute)
 app.use('/',bankRoute)
 app.use('/',withdrawalRoute)
 
-
-
-
-
-
-app.get('/',(req,res)=>{
-    res.render('withdrawal')
-
-})
-
 app.listen(port,()=>{
-    console.log(`listening at http://localhost:${port}`)
+    console.log(`listening at http://localhost:${port}/login`)
 })
