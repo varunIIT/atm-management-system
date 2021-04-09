@@ -23,6 +23,7 @@ authRoute.post('/login',(req,res)=>{
 })
 
 authRoute.get('/login',async (req,res)=>{
+  
   res.render('login')
 })
 module.exports={

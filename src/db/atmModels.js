@@ -9,7 +9,7 @@ const atmSchema=new schema({
 
 })
 const transactionSchema=new schema({
-    userId:String,
+    userId:Number,
     name:String,
     bankName:String,
     withdrawalAmount:Number,

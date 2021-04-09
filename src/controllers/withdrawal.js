@@ -37,13 +37,14 @@ const withdrawal=async (req,res)=>{
             res.render('withdrawal',{error:'Your transaction is successfull,We are running out of receipts',color:'green'})
         }
         await AtmModel.findOneAndUpdate({atmUniqueNumber:atmId},{receipt:atmReceipt-userReceipt})
-        await TransactionModel.create({
+        const done=await TransactionModel.create({
             userId:req.session.user.userId,
             name:req.session.user.name,
             bankName:req.session.user.bankName,
             withdrawalAmount:amount,
             receipt:userReceipt
         })
+
         return 1;
     }
     catch(err){
