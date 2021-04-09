@@ -17,7 +17,7 @@ app.use(express.urlencoded({extended:true}))  //body parser
 app.use(session({
     resave: true,
     saveUninitialized: true,
-    secret: '24knb6k247b2k7b2k7bk247hb2kh7b2',
+    secret: '24knb6k247b2k7b2k7bk247hb2kh7b2'
   }))
 app.use('/',authRoute)
 app.use('/',bank1Route)

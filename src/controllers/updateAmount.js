@@ -10,8 +10,6 @@ async function updateUserAmount(req,res){
         req.session.user.amount-=req.body.amount
 
     }
-    
-
 }
 module.exports={
     updateUserAmount

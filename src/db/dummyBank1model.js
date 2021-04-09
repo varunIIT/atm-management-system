@@ -3,7 +3,8 @@ const schema=mongoose.Schema
 
 const DummyBank1Schema=new schema({
     userId:Number,
-    pin:Number,
+    //changed to string
+    pin:String,
     name:String,
     amount:Number
 })

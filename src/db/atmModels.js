@@ -5,8 +5,6 @@ const atmSchema=new schema({
     atmUniqueNumber:Number,
     atmAmount:Number,
     receipt:Number,
-
-
 })
 const transactionSchema=new schema({
     userId:Number,
