@@ -1,5 +1,6 @@
 const  authRoute=require('express').Router()
 const axios=require('axios')
+const { AtmModel } = require('../db/atmModels')
 
 authRoute.post('/login',(req,res)=>{
   axios.get(`http://localhost:5000/${req.body.bankName}?userId=${req.body.userId}&pin=${req.body.pin}`)
@@ -10,7 +11,8 @@ authRoute.post('/login',(req,res)=>{
     else{
       req.session.user=response.data
       req.session.user.bankName=req.body.bankName
-      res.render('withdrawal')
+      //console.log(req.session)
+      res.redirect('/withdraw')
     }
     
   })
@@ -20,7 +22,7 @@ authRoute.post('/login',(req,res)=>{
 
 })
 
-authRoute.get('/login',(req,res)=>{
+authRoute.get('/login',async (req,res)=>{
   res.render('login')
 })
 module.exports={

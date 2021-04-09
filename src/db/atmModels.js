@@ -2,6 +2,7 @@ const mongoose=require('mongoose')
 const schema=mongoose.Schema
 
 const atmSchema=new schema({
+    atmUniqueNumber:Number,
     atmAmount:Number,
     receipt:Number,
 

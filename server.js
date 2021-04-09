@@ -7,8 +7,10 @@ app.set('view engine','hbs')
 
 require('./src/db/conn')
 const {authRoute}=require('./src/routers/authRoute')
-const {bankRoute}=require('./src/routers/bankRoute')
+const {bank1Route}=require('./src/routers/bank1Route')
+const {bank2Route}=require('./src/routers/bank2Route')
 const{withdrawalRoute}=require('./src/routers/withdrawalRoute')
+
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))  //body parser
 
@@ -18,7 +20,8 @@ app.use(session({
     secret: '24knb6k247b2k7b2k7bk247hb2kh7b2',
   }))
 app.use('/',authRoute)
-app.use('/',bankRoute)
+app.use('/',bank1Route)
+app.use('/',bank2Route)
 app.use('/',withdrawalRoute)
 
 app.listen(port,()=>{
