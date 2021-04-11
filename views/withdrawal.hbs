@@ -16,13 +16,20 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="./withdrawal.js"></script>
     <style>
-        .login-card {
+        .withdrawal-card {
             background-color: skyblue;
             padding: 30px;
             border-radius: 30px;
         }
         .note{
             width: 60px ;
+        }
+        .inp{
+            width: 60px;
+        }
+        #totalCash{
+            color:green;
+            font-weight:bold;
         }
         
     </style>
@@ -35,7 +42,7 @@
         <div class="row">
             <div class="col-12 my-4"></div>
             <div class="col"></div>
-            <div class="col-5 login-card">
+            <div class="col-5 withdrawal-card">
 
                 <h1 class="text-center mt-4">Withdrawal</h1>
                 <hr>
@@ -47,8 +54,8 @@
                     
                 </div>
                     <div class="mb-3">
-                        <label for="notRequiredg" class="form-label">Total Cash</label>
-                        <input type="number" class="form-control" id="notRequired" required  name="amount">
+                        <label for="totalCash" class="form-label">Total Cash</label>
+                        <input type="number" class="form-control" id="totalCash" required  name="amount" value="0" min="100" readonly>
                     </div>
                     
                     <div class="mb-3 form-check">

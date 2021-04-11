@@ -11,7 +11,7 @@ authRoute.post('/login',async (req,res)=>{
     else{
       req.session.user=response.data
       req.session.user.bankName=req.body.bankName
-      res.redirect('/menu.html')
+      res.redirect('/menu/menu.html')
     }
     
   })
@@ -21,8 +21,11 @@ authRoute.post('/login',async (req,res)=>{
 
 })
 
-authRoute.get('/login',async (req,res)=>{
+authRoute.get('/login', (req,res)=>{
   res.render('login')
+})
+authRoute.get('/user',(req,res)=>{
+  res.send({user:req.session.user.name})
 })
 module.exports={
   authRoute
