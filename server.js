@@ -19,10 +19,15 @@ app.use(session({
     saveUninitialized: true,
     secret: '24knb6k247b2k7b2k7bk247hb2kh7b2'
   }))
+
+app.use('/',express.static(__dirname+'/src/public'))
 app.use('/',authRoute)
 app.use('/',bank1Route)
 app.use('/',bank2Route)
 app.use('/',withdrawalRoute)
+app.use((req,res)=>{
+  res.send(undefined)
+})
 
 app.listen(port,()=>{
     console.log(`listening at http://localhost:${port}/login`)
