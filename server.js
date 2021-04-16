@@ -25,9 +25,7 @@ app.use('/',authRoute)
 app.use('/',bank1Route)
 app.use('/',bank2Route)
 app.use('/',withdrawalRoute)
-app.use((req,res)=>{
-  res.send(undefined)
-})
+
 
 app.listen(port,()=>{
     console.log(`listening at http://localhost:${port}/login`)

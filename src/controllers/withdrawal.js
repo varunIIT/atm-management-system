@@ -1,5 +1,4 @@
 const { TransactionModel, AtmModel } = require('../db/atmModels')
-const mongoose=require('mongoose')
 const withdrawal=async (req,res)=>{
     try{
         if(req.body.amount=='0'){
@@ -47,11 +46,12 @@ const withdrawal=async (req,res)=>{
         let note200=atmData[0].note200
         let note500=atmData[0].note500
         let note2000=atmData[0].note2000
-        await AtmModel.findOneAndUpdate({atmUniqueNumber:atmId},{receipt:atmReceipt-userReceipt,
-                                                                note100:note100-req.body.note100,
-                                                                note200:note200-req.body.note200,
-                                                                note500:note500-req.body.note500,
-                                                                note2000:note2000-req.body.note2000})
+        await AtmModel.findOneAndUpdate({atmUniqueNumber:atmId},{
+            receipt:atmReceipt-userReceipt,
+            note100:note100-req.body.note100,
+            note200:note200-req.body.note200,
+            note500:note500-req.body.note500,
+            note2000:note2000-req.body.note2000})
         await TransactionModel.create({
             userId:req.session.user.userId,
             name:req.session.user.name,
@@ -62,6 +62,7 @@ const withdrawal=async (req,res)=>{
 
         return 1;
     }
+
     catch(err){
         console.log(err)
     }
