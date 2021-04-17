@@ -7,7 +7,7 @@ app.set('view engine','hbs')
 
 require('./src/db/conn')
 const {authRoute}=require('./src/routers/authRoute')
-const { balEnqRoute } = require('./src/routers/BalEnqRoute')
+const { balEnqRoute } = require('./src/routers/balEnqRoute')
 const {bank1Route}=require('./src/routers/bank1Routes')
 const {bank2Route}=require('./src/routers/bank2Routes')
 const { changePinRoute } = require('./src/routers/changePinRoute')
