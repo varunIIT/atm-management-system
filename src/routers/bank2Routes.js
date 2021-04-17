@@ -2,6 +2,7 @@ const bank2Route=require('express').Router()
 const {getUserBank2}=require('../controllers/getUsersBank2')
 const { updateUserBank2 } = require('../controllers/updateUserBank2')
 const { changePinBank2 } = require('../controllers/changePinBank2')
+const { chequeBookReqbank2 } = require('../controllers/chequeBookReqBank2')
 
 bank2Route.get('/bank2',async (req,res)=>{
     let userId=parseInt(req.query.userId)
@@ -19,6 +20,11 @@ bank2Route.get('/changePinbank2',async(req,res)=>{
     await changePinBank2(req,res)
     res.send("ok")
 })
+bank2Route.get('/chequeBookReqbank2',async(req,res)=>{
+    await chequeBookReqbank2(req,res)
+    res.send('ok')
+})
+
 
 
 module.exports={bank2Route}
