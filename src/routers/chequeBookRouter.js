@@ -11,7 +11,8 @@ chequeBookRouter.get('/chequeBookReqPage',(req,res)=>{
     }
 })
 chequeBookRouter.get('/chequeBookReq',(req,res)=>{
-    axios.get(`http://localhost:5000/chequeBookReq${req.session.user.bankName}?userId=${req.session.user.userId}`)
+    const remote_url=`https://atm-machine-april-2021.herokuapp.com/chequeBookReq${req.session.user.bankName}?userId=${req.session.user.userId}`
+    axios.get(remote_url||`http://localhost:5000/chequeBookReq${req.session.user.bankName}?userId=${req.session.user.userId}`)
     .then(()=>{
         req.session.user.chequeBookRequest=true
         req.session.save()
