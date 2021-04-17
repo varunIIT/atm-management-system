@@ -6,7 +6,11 @@ const DummyBank1Schema=new schema({
     //changed to string
     pin:String,
     name:String,
-    amount:Number
+    amount:Number,
+    chequeBookRequest:{
+        type: Boolean,
+        default: false
+    }
 })
 
 const DummyBank1Model=mongoose.model('DummyBank1Model',DummyBank1Schema)
