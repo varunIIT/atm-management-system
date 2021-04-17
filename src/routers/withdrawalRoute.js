@@ -4,6 +4,9 @@ const axios=require('axios')
 
 const withdrawalRoute=require('express').Router()
 withdrawalRoute.get('/withdraw',(req,res)=>{
+    if(!req.session.user){
+        return res.redirect('/login')
+    }
      res.render('withdrawal')
     
 })
@@ -12,12 +15,13 @@ withdrawalRoute.post('/withdrawPost',async (req,res)=>{
     if(success){
         await  axios.get(`http://localhost:5000/update${req.session.user.bankName}?userId=${req.session.user.userId}&amount=${req.body.amount}`).
                 then(()=>{
-                    console.log("user updated successfully")
+                    //console.log("user updated successfully")
+                    req.session.user.amount-=req.body.amount
                 })
                 .catch(()=>{
                     console.log("user is not updated,error")
                 })
-        req.session.user.amount-=req.body.amount
+        
     }
 
     

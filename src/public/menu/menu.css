@@ -1,17 +1,24 @@
 .menu-card{
     background-color:skyblue;
-    height: 400px;
     padding:30px;
     border-radius: 30px;
     display:inline-flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-items: flex-start;
-    align-content: space-around;
+    
+    
 }
 .btn{
-    height:60px;
-    width:160px;
-    font-size:30px;
+    height:80px;
+    width: 160px;
     border-radius: 10px;
+    display: table-cell;
+    vertical-align: middle;
+    font-size:larger;
+    
+}
+hr{
+            
+    border: 2px solid black;
+    border-radius: 5px;
 }
