@@ -7,6 +7,7 @@ app.set('view engine','hbs')
 
 require('./src/db/conn')
 const {authRoute}=require('./src/routers/authRoute')
+const { balEnqRoute } = require('./src/routers/BalEnqRoute')
 const {bank1Route}=require('./src/routers/bank1Route')
 const {bank2Route}=require('./src/routers/bank2Route')
 const { changePinRoute } = require('./src/routers/changePinRoute')
@@ -24,11 +25,11 @@ app.use(session({
 app.use('/',express.static(__dirname+'/src/public'))
 
 app.use('/',authRoute)
-
 app.use('/',bank1Route)
 app.use('/',bank2Route)
 app.use('/',withdrawalRoute)
 app.use('/',changePinRoute)
+app.use('/',balEnqRoute)
 app.listen(port,()=>{
     console.log(`listening at http://localhost:${port}/login`)
 })

@@ -10,7 +10,7 @@ changePinRoute.get('/changePin',(req,res)=>{
 changePinRoute.post('/changePin',(req,res)=>{
     axios.get(`http://localhost:5000/changePin${req.session.user.bankName}?userId=${req.session.user.userId}&pin=${req.body.newPin}`)
     .then(()=>{
-        res.render('changePin',{error:'pin changed successfully'})
+        res.render('changePin',{error:'PIN changed successfully!'})
     })
     .catch(()=>{
         console.log('error changing pin')

@@ -1,10 +1,6 @@
 const { TransactionModel, AtmModel } = require('../db/atmModels')
 const withdrawal=async (req,res)=>{
     try{
-        if(req.body.amount=='0'){
-            res.render('withdrawal',{error:'Please increase your amount!',color:'red'})
-            return 0
-        }
         let amount =parseInt(req.body.amount)
         //console.log(req.body)
         const atmData=await AtmModel.find({})
