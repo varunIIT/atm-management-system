@@ -21,31 +21,35 @@
             padding: 30px;
             border-radius: 30px;
         }
-        .note{
-            width: 60px ;
-        }
-        .inp{
+
+        .note {
             width: 60px;
         }
-        #totalCash{
-            color:green;
-            font-weight:bold;
+
+        .inp {
+            width: 60px;
         }
+
+        #totalCash {
+            color: green;
+            font-weight: bold;
+        }
+
         input[type=Number] {
-        border: 2px solid green;
-        border-radius: 4px;}
-        .inp{
+            border: 3px solid grey;
+            border-radius: 4px;
+        }
+
+        .inp {
             height: 38px;
             width: 60;
-            transform: translateY(2px);
+            transform: translateY(3px);
         }
-        
-        
     </style>
 </head>
 
 <body>
-    
+
     <div class="container">
 
         <div class="row">
@@ -55,29 +59,43 @@
 
                 <div class="withdrawal-card">
                     <h1 class="text-center mt-3">Withdrawal</h1>
-                <hr>
-                <div style="color:{{color}}" class="text-center">{{error}}</div>
-                
-                <form action="/withdrawPost" method="POST" class="my-4">
-                <div id="denomination">
-                    {{!-- notes will come from jquery --}}
-                    
-                </div>
-                    <div class="mb-3">
-                        <label for="totalCash" class="form-label">Total Cash</label>
-                        <input type="number" class="form-control" id="totalCash" required  name="amount" value="0" min="100" readonly>
-                    </div>
-                    
-                    <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="receipt" name="receipt">
-                        <label class="form-check-label" for="exampleCheck1">Receipt</label>
-                    </div>
+                    <hr>
+                    <div style="color:{{color}}" class="text-center">{{error}}</div>
 
-                    <div class="text-center"><button type="submit" class="btn btn-primary text">Withdraw</button></div>
-                </form>
+                    <form action="/withdrawPost" method="POST" class="my-4">
+                        <div id="denomination">
+                            {{!-- notes will come from jquery --}}
+                            <div class="text-center"><button type="button"
+                                    class="note btn btn-primary m-2">100</button><input class="inp " id="100"
+                                    type="number" min="0" max="" value="0" name="note100"></div>
+                            <div class="text-center"><button type="button"
+                                    class="note btn btn-primary m-2">200</button><input class="inp " id="200"
+                                    type="number" min="0" max="" value="0" name="note200"></div>
+                            <div class="text-center"><button type="button"
+                                    class="note btn btn-primary m-2">500</button><input class="inp " id="500"
+                                    type="number" min="0" max="" value="0" name="note500"></div>
+                            <div class="text-center"><button type="button"
+                                    class="note btn btn-primary m-2">2000</button><input class="inp " id="2000"
+                                    type="number" min="0" max="" value="0" name="note2000"></div>
+
+                        </div>
+                        <div class="mb-3">
+                            <label for="totalCash" class="form-label">Total Cash (in Rs.)</label>
+                            <input type="number" class="form-control" id="totalCash" required name="amount" value="0"
+                                min="100" readonly>
+                        </div>
+
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="receipt" name="receipt">
+                            <label class="form-check-label" for="exampleCheck1">Receipt</label>
+                        </div>
+
+                        <div class="text-center"><button type="submit" class="btn btn-primary text">Withdraw</button>
+                        </div>
+                    </form>
                 </div>
                 <form action="/logout" class="my-3">
-                    <div class="text-center"><button class="btn btn-outline-danger" >Logout</button></div>
+                    <div class="text-center"><button class="btn btn-outline-danger">Logout</button></div>
                 </form>
             </div>
             <div class="col"></div>

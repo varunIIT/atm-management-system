@@ -44,6 +44,11 @@
                     <div><button
                             class="btn btn-success">Request Cheque Book</button></div>
                 </form>
+                {{else}}
+                <form action="/chequeBookReq" class="my-3 text-center">
+                     <div><button
+                            class="btn btn-danger">Cancel Request</button></div>
+                </form>
                 {{/if}}
                 <form action="/logout" class="my-5">
                     <div class="text-center"><button class="btn btn-outline-danger">Logout</button></div>
