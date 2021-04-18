@@ -3,11 +3,13 @@ const axios = require("axios");
 
 authRoute.post("/login", async (req, res) => {
   //todo hashing
-  const remote_url = `https://atm-machine-april-2021.herokuapp.com/${req.body.bankName}?userId=${req.body.userId}&pin=${req.body.pin}`;
+  let remote_url=null
+  if(process.env.PORT){
+    remote_url = `https://atm-machine-april-2021.herokuapp.com/${req.body.bankName}?userId=${req.body.userId}&pin=${req.body.pin}`;
+  }
   axios
     .get(
-      `http://localhost:5000/${req.body.bankName}?userId=${req.body.userId}&pin=${req.body.pin}` ||
-        remote_url
+      remote_url||`http://localhost:5000/${req.body.bankName}?userId=${req.body.userId}&pin=${req.body.pin}`
     )
     .then((response) => {
       if (!response.data) {
