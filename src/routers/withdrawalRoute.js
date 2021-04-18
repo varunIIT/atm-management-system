@@ -17,7 +17,7 @@ withdrawalRoute.post('/withdrawPost',async (req,res)=>{
         await  axios.get(remote_url||`http://localhost:5000/update${req.session.user.bankName}?userId=${req.session.user.userId}&amount=${req.body.amount}`).
                 then(async()=>{
                     //console.log("user updated successfully")
-                    req.session.user.amount-=parseInt(req.body.amount)
+                    req.session.user.amount=req.session.user.amount-parseInt(req.body.amount)
                     await req.session.save()
                 })
                 .catch(()=>{
