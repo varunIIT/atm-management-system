@@ -12,6 +12,7 @@ authRoute.post('/login',async (req,res)=>{
       
       req.session.user=response.data
       req.session.user.bankName=req.body.bankName
+      
       res.redirect('/menu/menu.html')
     }
     

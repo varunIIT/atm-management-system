@@ -15,10 +15,10 @@ withdrawalRoute.post('/withdrawPost',async (req,res)=>{
     if(success){
         const remote_url=`https://atm-machine-april-2021.herokuapp.com/update${req.session.user.bankName}?userId=${req.session.user.userId}&amount=${req.body.amount}`
         await  axios.get(remote_url||`http://localhost:5000/update${req.session.user.bankName}?userId=${req.session.user.userId}&amount=${req.body.amount}`).
-                then(()=>{
+                then(async()=>{
                     //console.log("user updated successfully")
                     req.session.user.amount-=parseInt(req.body.amount)
-                    req.session.save()
+                    await req.session.save()
                 })
                 .catch(()=>{
                     console.log("user is not updated,error")
