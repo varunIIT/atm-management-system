@@ -24,11 +24,15 @@ const withdrawal=async (req,res)=>{
         await AtmModel.findOneAndUpdate({atmUniqueNumber:atmId},{atmAmount:atmAmount-amount})
         if(!receipt&flag==0){
             userReceipt=0
+            req.session.user.amount=req.session.user.amount-parseInt(req.body.amount)
+            req.session.save()
             res.render('withdrawal',{error:'Your transaction is successfull!',color:'green'})
             flag=1
         }
         else if(atmReceipt!=0&flag==0){
             userReceipt=1
+            req.session.user.amount=req.session.user.amount-parseInt(req.body.amount)
+            req.session.save()
             res.render('withdrawal',{error:'Your transaction is successfull,Please collect your receipt!',color:'green'})
             flag=1
 
@@ -36,6 +40,8 @@ const withdrawal=async (req,res)=>{
     
         else if(flag==0){
             userReceipt=0
+            req.session.user.amount=req.session.user.amount-parseInt(req.body.amount)
+            req.session.save()
             res.render('withdrawal',{error:'Your transaction is successfull,We are running out of receipts!',color:'green'})
         }
         let note100=atmData[0].note100
