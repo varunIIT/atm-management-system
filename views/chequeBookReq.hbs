@@ -34,7 +34,7 @@
             <div class="col-5">
                 <div class="text-center" style="color: green;">{{passed}}</div>
                 {{#if Req}}
-                <form action="/chequeBookReq" class="my-3 text-center">
+                <form action="/chequeBookReq" method="POST" class="my-3 text-center">
                     <div class="mb-2">
                         <input  type="checkbox"  id="flexCheckDefault" required>
                         <label  for="flexCheckDefault">
@@ -45,7 +45,7 @@
                             class="btn btn-success">Request Cheque Book</button></div>
                 </form>
                 {{else}}
-                <form action="/chequeBookReq" class="my-3 text-center">
+                <form action="/chequeBookReq" method="POST"class="my-3 text-center">
                      <div><button
                             class="btn btn-danger">Cancel Request</button></div>
                 </form>

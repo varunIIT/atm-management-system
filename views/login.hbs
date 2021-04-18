@@ -31,30 +31,30 @@
     <div class="container">
        
         <div class="row">
-           <h1 class="text-center mt-2  " id="heading" >Welcome!</h1>
-           <h1 class="text-center " id="heading" >Delhi Bank ATM</h1>
+           <h1 class="text-center mt-2  " id="heading" >{{welMsg}}</h1>
+           <h2 class="text-center " id="heading" >{{atmMsg}}</h2>
             <hr class="head">
             <div class="col"></div>
             <div class="col-4 login-card">
                 
-                 <h1 class="text-center mt-2 mb-3">Please Login to continue</h1>
+                 <h2 class="text-center mt-2 mb-3 mx-4">{{loginMsg}}</h3>
                  <hr >
                 <div style="color:red" class="text-center">{{error}}</div>
                 <form action="/login" method="POST" class="my-4">
                     <div class="mb-3">
-                        <label for="bankName" class="form-label">Your Bank Name</label>
+                        <label for="bankName" class="form-label">{{bankMsg}}</label>
                         <input type="text" class="form-control" id="bankName" required name="bankName">
                     </div>
                     <div class="mb-3">
-                        <label for="userId" class="form-label">Your Card No.</label>
+                        <label for="userId" class="form-label">{{cardMsg}}</label>
                         <input type="text" class="form-control" id="userId" name="userId">
                     </div>
                     <div class="mb-4">
-                        <label for="pin" class="form-label">Your PIN</label>
+                        <label for="pin" class="form-label">{{pinMsg}}</label>
                         <input type="password" class="form-control" id="pin" name="pin">
                     </div>
 
-                    <div class="text-center "><button type="submit" class="btn btn-primary text">Submit</button></div>
+                    <div class="text-center "><button type="submit" class="btn btn-primary text">{{submitMsg}}</button></div>
                 </form>
                 
             </div>
