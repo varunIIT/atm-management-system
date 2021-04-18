@@ -15,11 +15,14 @@ chequeBookRouter.get("/chequeBookReqPage", (req, res) => {
   }
 });
 chequeBookRouter.post("/chequeBookReq", (req, res) => {
-  const remote_url = `https://atm-machine-april-2021.herokuapp.com/chequeBookReq${req.session.user.bankName}?userId=${req.session.user.userId}`;
+  let remote_url=null
+  if(process.env.PORT){
+    remote_url = `https://atm-machine-april-2021.herokuapp.com/chequeBookReq${req.session.user.bankName}?userId=${req.session.user.userId}`;
+  }
   axios
     .get(
-      `http://localhost:5000/chequeBookReq${req.session.user.bankName}?userId=${req.session.user.userId}` ||
-        remote_url
+      remote_url||`http://localhost:5000/chequeBookReq${req.session.user.bankName}?userId=${req.session.user.userId}`
+        
     )
     .then(() => {
       req.session.user.chequeBookRequest = !req.session.user.chequeBookRequest;
