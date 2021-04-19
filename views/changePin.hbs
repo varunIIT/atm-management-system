@@ -38,7 +38,7 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center my-3" id="heading" >Change PIN</h1>
+        <h1 class="text-center my-3" id="heading" >{{headMsg}}</h1>
         <hr>
        <div class="row">
             <div class="col"></div>
@@ -46,7 +46,7 @@
             <form action="/changePin" method="POST" >
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="floatingInput" name="newPin"  placeholder="someValue">
-                <label for="floatingInput">Enter new pin :</label>
+                <label for="floatingInput">{{enterMsg}}</label>
             </div>
         <div style="color: green;" class="text-center mb-3">{{error}}</div>
         
@@ -79,10 +79,10 @@
                 <div class="col backspace btn btn-secondary"><i class="fas fa-backspace"></i></div>
           </div>
           </div>
-          <div class="text-center mt-3"><button type="submit" class="btn btn-outline-danger">Change Pin!</button></div>
+          <div class="text-center mt-3"><button type="submit" class="btn btn-outline-danger">{{btnMsg}}</button></div>
         </form>
         <form action="/logout" class="my-3">
-                    <div class="text-center"><button class="btn btn-outline-danger" >Logout</button></div>
+                    <div class="text-center"><button class="btn btn-outline-danger" >{{btn2Msg}}</button></div>
                 </form>
         </div>
         <div class="col"></div>

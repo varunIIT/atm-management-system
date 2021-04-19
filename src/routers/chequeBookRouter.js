@@ -5,13 +5,40 @@ chequeBookRouter.get("/chequeBookReqPage", (req, res) => {
     return res.redirect("/");
   }
   if (req.session.user.chequeBookRequest) {
+    let passed="Your cheque book request has been already passed,wait for bank to reply!"
+    let headMsg='Cheque Book Request'
+    let cancelMsg='Cancel Request'
+    let logout='Logout'
+
+  if(req.session.language=='hindi'){
+    passed= 'आपका चेक बुक अनुरोध पहले ही पारित हो चुका है, बैंक के जवाब की प्रतीक्षा करें!'
+    headMsg='चेक बुक निवेदन'
+    cancelMsg='अनुरोध रद्द करें'
+    logout='लॉग आउट'
+  }
     res.render("chequeBookReq", {
-      passed:
-        "Your cheque book request has been already passed,wait for bank to reply!",
+      passed:passed,
       Req: false,
+      headMsg:headMsg,
+      cancelMsg:cancelMsg,
+      logout:logout
     });
   } else {
-    res.render("chequeBookReq", { Req: true });
+    let reqMsg='Do you want to make a cheque book request to your bank?'
+    let req2Msg='Request Cheque Book'
+    let headMsg='Cheque Book Request'
+    let logout='Logout'
+  
+  
+  
+    if(req.session.language=='hindi'){
+      reqMsg='क्या आप अपने बैंक को चेक बुक अनुरोध करना चाहते हैं?'
+      req2Msg='चेक बुक अनुरोध करें'
+      headMsg='चेक बुक निवेदन'
+      logout='लॉग आउट'
+  
+    }
+    res.render("chequeBookReq", { Req: true,req2Msg:req2Msg,reqMsg:reqMsg ,headMsg:headMsg,logout:logout});
   }
 });
 chequeBookRouter.post("/chequeBookReq", (req, res) => {
@@ -39,13 +66,41 @@ chequeBookRouter.post("/chequeBookReq", (req, res) => {
     });
 });
 chequeBookRouter.get("/chequeBookReqPassed", (req, res) => {
+  let passed="Your cheque book request has been passed!"
+  let headMsg='Cheque Book Request'
+  let cancelMsg='Cancel Request'
+  let logout='Logout'
+
+  if(req.session.language=='hindi'){
+    passed= "आपका चेक बुक अनुरोध पारित हो गया है!"
+    headMsg='चेक बुक निवेदन'
+    cancelMsg='अनुरोध रद्द करें'
+    logout='लॉग आउट'
+  }
   res.render("chequeBookReq", {
-    passed: "Your cheque book request has been passed!",
+   passed:passed,
     Req: false,
+    headMsg:headMsg,
+    cancelMsg:cancelMsg,
+    logout:logout
   });
 });
 chequeBookRouter.get("/chequeBookReqCancel", (req, res) => {
-  res.render("chequeBookReq", { Req: true });
+  let reqMsg='Do you want to make a cheque book request to your bank?'
+  let req2Msg='Request Cheque Book'
+  let headMsg='Cheque Book Request'
+  let logout='Logout'
+
+
+
+  if(req.session.language=='hindi'){
+    reqMsg='क्या आप अपने बैंक को चेक बुक अनुरोध करना चाहते हैं?'
+    req2Msg='चेक बुक अनुरोध करें'
+    headMsg='चेक बुक निवेदन'
+    logout='लॉग आउट'
+
+  }
+  res.render("chequeBookReq", { Req: true,req2Msg:req2Msg,reqMsg:reqMsg ,headMsg:headMsg,logout:logout});
 });
 
 module.exports = {

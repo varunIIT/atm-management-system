@@ -7,7 +7,20 @@ withdrawalRoute.get("/withdraw", (req, res) => {
   if (!req.session.user) {
     return res.redirect("/");
   }
-  res.render("withdrawal");
+
+  let withMsg='Withdrawal'
+  let totalMsg='Total Cash (in Rs.)'
+  let receipt='Receipt'
+  let with2Msg='Withdraw'
+  let logout='Logout'
+  if(req.session.language=='hindi'){
+    withMsg='निकासी'
+    totalMsg='कुल नकद (रु में)'
+    receipt='रसीद'
+    with2Msg='निकालना'
+    logout='लॉग आउट'
+  }
+  res.render("withdrawal",{withMsg:withMsg,totalMsg:totalMsg,receipt:receipt,with2Msg:with2Msg,logout:logout});
 });
 withdrawalRoute.post("/withdrawPost", async (req, res) => {
   const success = await withdrawal(req, res);

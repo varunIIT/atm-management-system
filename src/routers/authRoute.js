@@ -13,7 +13,25 @@ authRoute.post("/login", async (req, res) => {
     )
     .then((response) => {
       if (!response.data) {
-        return res.render("login", { error: "Invalid Credentials!" });
+        let loginMsg='Please Login to continue'
+        let welMsg='Welcome!'
+        let atmMsg='Delhi Bank ATM'
+        let bankMsg='Your Bank Name'
+        let cardMsg='Your Card No.'
+        let pinMsg='Your PIN'
+        let submitMsg='Submit'
+        let error='Invalid Credentials!'
+        if(req.session.language=='hindi'){
+            loginMsg='जारी रखने के लिए कृपया लॉग इन करें'
+            welMsg='स्वागत हे!'
+            atmMsg='दिल्ली बैंक एटीएम'
+            bankMsg='आपका बैंक का नाम'
+            cardMsg='आपका कार्ड नं.'
+            pinMsg='आपका पिन'
+            submitMsg='प्रस्तुत'
+            error='अवैध प्रत्यय पत्र!'
+        }
+        res.render("login", { error: error,loginMsg:loginMsg,welMsg:welMsg,atmMsg:atmMsg,bankMsg:bankMsg, cardMsg: cardMsg,pinMsg:pinMsg, submitMsg: submitMsg  });
       }
 
       req.session.user = response.data;
@@ -22,7 +40,25 @@ authRoute.post("/login", async (req, res) => {
       res.redirect("/menu");
     })
     .catch((err) => {
-      res.render("login", { error: "Invalid Credentials!" });
+      let loginMsg='Please Login to continue'
+  let welMsg='Welcome!'
+  let atmMsg='Delhi Bank ATM'
+  let bankMsg='Your Bank Name'
+  let cardMsg='Your Card No.'
+  let pinMsg='Your PIN'
+  let submitMsg='Submit'
+  let error='Invalid Credentials!'
+  if(req.session.language=='hindi'){
+      loginMsg='जारी रखने के लिए कृपया लॉग इन करें'
+      welMsg='स्वागत हे!'
+      atmMsg='दिल्ली बैंक एटीएम'
+      bankMsg='आपका बैंक का नाम'
+      cardMsg='आपका कार्ड नं.'
+      pinMsg='आपका पिन'
+      submitMsg='प्रस्तुत'
+      error='अवैध प्रत्यय पत्र!'
+  }
+      res.render("login", { error: error,loginMsg:loginMsg,welMsg:welMsg,atmMsg:atmMsg,bankMsg:bankMsg, cardMsg: cardMsg,pinMsg:pinMsg, submitMsg: submitMsg  });
     });
 });
 

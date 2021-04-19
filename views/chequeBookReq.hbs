@@ -27,7 +27,7 @@
 
 <body>
     <div class="container">
-        <h1 class="text-center my-3" id="heading">Cheque Book Request</h1>
+        <h1 class="text-center my-3" id="heading">{{headMsg}}</h1>
         <hr>
         <div class="row">
             <div class="col"></div>
@@ -38,20 +38,20 @@
                     <div class="mb-2">
                         <input  type="checkbox"  id="flexCheckDefault" required>
                         <label  for="flexCheckDefault">
-                           Do you want to make a cheque book request to your bank?
+                           {{reqMsg}}
                         </label>
                     </div>
                     <div><button
-                            class="btn btn-success">Request Cheque Book</button></div>
+                            class="btn btn-success">{{req2Msg}}</button></div>
                 </form>
                 {{else}}
                 <form action="/chequeBookReq" method="POST"class="my-3 text-center">
                      <div><button
-                            class="btn btn-danger">Cancel Request</button></div>
+                            class="btn btn-danger">{{cancelMsg}}</button></div>
                 </form>
                 {{/if}}
                 <form action="/logout" class="my-5">
-                    <div class="text-center"><button class="btn btn-outline-danger">Logout</button></div>
+                    <div class="text-center"><button class="btn btn-outline-danger">{{logout}}</button></div>
                 </form>
             </div>
             <div class="col"></div>

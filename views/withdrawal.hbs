@@ -58,7 +58,7 @@
             <div class="col-4">
 
                 <div class="withdrawal-card">
-                    <h1 class="text-center mt-3">Withdrawal</h1>
+                    <h1 class="text-center mt-3">{{withMsg}}</h1>
                     <hr>
                     <div style="color:{{color}}" class="text-center">{{error}}</div>
 
@@ -80,22 +80,22 @@
 
                         </div>
                         <div class="mb-3">
-                            <label for="totalCash" class="form-label">Total Cash (in Rs.)</label>
+                            <label for="totalCash" class="form-label">{{totalMsg}}</label>
                             <input type="number" class="form-control" id="totalCash" required name="amount" value="0"
                                 readonly >
                         </div>
 
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="receipt" name="receipt">
-                            <label class="form-check-label" for="exampleCheck1">Receipt</label>
+                            <label class="form-check-label" for="exampleCheck1">{{receipt}}</label>
                         </div>
 
-                        <div class="text-center"><button type="submit" class="btn btn-primary text">Withdraw</button>
+                        <div class="text-center"><button type="submit" class="btn btn-primary text">{{with2Msg}}</button>
                         </div>
                     </form>
                 </div>
                 <form action="/logout" class="my-3">
-                    <div class="text-center"><button class="btn btn-outline-danger">Logout</button></div>
+                    <div class="text-center"><button class="btn btn-outline-danger">{{logout}}</button></div>
                 </form>
             </div>
             <div class="col"></div>
