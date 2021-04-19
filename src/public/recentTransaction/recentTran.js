@@ -6,9 +6,9 @@ $(() => {
     }
 
     //console.log(data);
-    if(data.lang=='hindi'){
-      $('#heading').text('आपका शीर्ष 10 हाल ही में लेनदेन!')
-      $('#logout').text('लॉग आउट')
+    if (data.lang == "hindi") {
+      $("#heading").text("आपका शीर्ष 10 हाल ही में लेनदेन!");
+      $("#logout").text("लॉग आउट");
       for (let rt of data.recentTran) {
         let val = "नहीं ";
         if (rt.receipt) {
@@ -18,8 +18,7 @@ $(() => {
           ` <li class="list-group-item" style="border:solid 1px black;"><div><b>निकाली गयी राशि</b> : <i>रु. ${rt.withdrawalAmount}</i></div><div><b>रसीद ली गई</b> : <i>${val}</i></div></li>`
         );
       }
-    }
-    else{
+    } else {
       for (let rt of data.recentTran) {
         let val = "No";
         if (rt.receipt) {
@@ -30,6 +29,5 @@ $(() => {
         );
       }
     }
-    
   });
 });

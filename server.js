@@ -16,7 +16,7 @@ const { createDatabasesRoute } = require("./src/routers/createDatabases");
 const { langRoute } = require("./src/routers/langRoute");
 const { recentTransactionRoute } = require("./src/routers/recentTransaction");
 const { withdrawalRoute } = require("./src/routers/withdrawalRoute");
-const {menuRoute}=require('./src/routers/menuRoute')
+const { menuRoute } = require("./src/routers/menuRoute");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //body parser
@@ -40,8 +40,8 @@ app.use("/", balEnqRoute);
 app.use("/", recentTransactionRoute);
 app.use("/", chequeBookRouter);
 app.use("/", createDatabasesRoute);
-app.use('/',langRoute)
-app.use('/',menuRoute)
+app.use("/", langRoute);
+app.use("/", menuRoute);
 app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
 });
