@@ -1,35 +1,41 @@
 const { TransactionModel, AtmModel } = require("../db/atmModels");
 const withdrawal = async (req, res) => {
   try {
-    let withMsg = "Withdrawal";
-    let totalMsg = "Total Cash (in Rs.)";
-    let receiptMsg = "Receipt";
-    let with2Msg = "Withdraw";
-    let logout = "Logout";
+    let currMsgObj={
+       withMsg : "Withdrawal",
+       totalMsg : "Total Cash (in Rs.)",
+       receiptMsg : "Receipt",
+       with2Msg : "Withdraw",
+       logout : "Logout",
+       popUpMsg:'',
+       color:''
+    }
+    let msgObjHin={
+      withMsg : "निकासी",
+      totalMsg : "कुल नकद (रु में)",
+      receiptMsg : "रसीद",
+      with2Msg : "निकालना",
+      logout : "लॉग आउट",
+      popUpMsg:'',
+      color:''
+    }
+   
     if (req.session.language == "hindi") {
-      withMsg = "निकासी";
-      totalMsg = "कुल नकद (रु में)";
-      receiptMsg = "रसीद";
-      with2Msg = "निकालना";
-      logout = "लॉग आउट";
+      currMsgObj=msgObjHin;
     }
     let amount = parseInt(req.body.amount);
+
     if (amount == 0) {
       let error = "Please increase your amount!";
       if (req.session.language == "hindi") {
         error = "कृपया अपनी राशि बढ़ाएँ!";
       }
-      res.render("withdrawal", {
-        error: error,
-        color: "red",
-        withMsg: withMsg,
-        totalMsg: totalMsg,
-        receipt: receiptMsg,
-        with2Msg: with2Msg,
-        logout: logout,
-      });
+      currMsgObj.popUpMsg=error;
+      currMsgObj.color='red';
+      res.render("withdrawal", currMsgObj);
       return 0;
     }
+
     //console.log(req.body)
     const atmData = await AtmModel.find({});
     const atmAmount = atmData[0].atmAmount;
@@ -42,103 +48,85 @@ const withdrawal = async (req, res) => {
       if (req.session.language == "hindi") {
         error = `आपके पास आपके खाते में रु. ${req.session.user.amount} है!`;
       }
-      res.render("withdrawal", {
-        error: error,
-        color: "red",
-        withMsg: withMsg,
-        totalMsg: totalMsg,
-        receipt: receiptMsg,
-        with2Msg: with2Msg,
-        logout: logout,
-      });
+      currMsgObj.popUpMsg=error;
+      currMsgObj.color='red';
+      res.render("withdrawal", currMsgObj);
       return 0;
-    } else if (amount > atmAmount) {
-      let error = "Please reduce your amount!";
+    } 
+    
+    
+    else if (amount > atmAmount) {
+      let error = "Please 'red'uce your amount!";
       if (req.session.language == "hindi") {
         error = "कृपया अपनी राशि कम करें!";
       }
-      res.render("withdrawal", {
-        error: error,
-        color: "red",
-        withMsg: withMsg,
-        totalMsg: totalMsg,
-        receipt: receiptMsg,
-        with2Msg: with2Msg,
-        logout: logout,
-      });
+      currMsgObj.popUpMsg=error;
+      currMsgObj.color='red';
+      res.render("withdrawal", currMsgObj);
       return 0;
     }
+
+
     let flag = 0;
     let userReceipt;
     let atmId = 1212;
+
     await AtmModel.findOneAndUpdate(
       { atmUniqueNumber: atmId },
       { atmAmount: atmAmount - amount }
     );
-    if (!receipt & (flag == 0)) {
-      userReceipt = 0;
-      req.session.user.amount =
-        req.session.user.amount - parseInt(req.body.amount);
-      req.session.save();
 
-      let error = "Your transaction is successfull!";
-      if (req.session.language == "hindi") {
-        error = "आपका लेनदेन सफल है!";
-      }
-      res.render("withdrawal", {
-        error: error,
-        color: "green",
-        withMsg: withMsg,
-        totalMsg: totalMsg,
-        receipt: receiptMsg,
-        with2Msg: with2Msg,
-        logout: logout,
-      });
-      flag = 1;
-    } else if ((atmReceipt != 0) & (flag == 0)) {
-      userReceipt = 1;
-      req.session.user.amount =
-        req.session.user.amount - parseInt(req.body.amount);
-      req.session.save();
-      let error =
-        "Your transaction is successfull,Please collect your receipt!";
-      if (req.session.language == "hindi") {
-        error = "आपका लेनदेन सफल है, कृपया अपनी रसीद जमा करें!";
-      }
-      res.render("withdrawal", {
-        error: error,
-        color: "green",
-        withMsg: withMsg,
-        totalMsg: totalMsg,
-        receipt: receiptMsg,
-        with2Msg: with2Msg,
-        logout: logout,
-      });
-      flag = 1;
-    } else if (flag == 0) {
-      userReceipt = 0;
-      req.session.user.amount =
-        req.session.user.amount - parseInt(req.body.amount);
-      req.session.save();
-      let error =
-        "Your transaction is successfull,We are running out of receipts!";
-      if (req.session.language == "hindi") {
-        error = "आपका लेनदेन सफल है, हम प्राप्तियों से बाहर चल रहे हैं!!";
-      }
-      res.render("withdrawal", {
-        error: error,
-        color: "green",
-        withMsg: withMsg,
-        totalMsg: totalMsg,
-        receipt: receiptMsg,
-        with2Msg: with2Msg,
-        logout: logout,
-      });
+    if (!receipt & (flag == 0)) {
+        userReceipt = 0;
+        req.session.user.amount = req.session.user.amount - parseInt(req.body.amount);
+        req.session.save();
+
+        let success = "Your transaction is successfull!";
+        if (req.session.language == "hindi") {
+          success = "आपका लेनदेन सफल है!";
+        }
+        currMsgObj.popUpMsg=success;
+        currMsgObj.color='green';
+        res.render("withdrawal",currMsgObj);
+        flag = 1;
+    } 
+    
+    else if ((atmReceipt != 0) & (flag == 0)) {
+        userReceipt = 1;
+        req.session.user.amount = req.session.user.amount - parseInt(req.body.amount);
+        req.session.save();
+        let success =
+          "Your transaction is successfull,Please collect your receipt!";
+        if (req.session.language == "hindi") {
+          success = "आपका लेनदेन सफल है, कृपया अपनी रसीद जमा करें!";
+        }
+        currMsgObj.popUpMsg=success;
+        currMsgObj.color='green';
+        res.render("withdrawal", currMsgObj);
+        flag = 1;
+      } 
+    
+    
+    else if (flag == 0) {
+        userReceipt = 0;
+        req.session.user.amount = req.session.user.amount - parseInt(req.body.amount);
+        req.session.save();
+        let success =
+          "Your transaction is successfull,We are running out of receipts!";
+        if (req.session.language == "hindi") {
+          success = "आपका लेनदेन सफल है, हम प्राप्तियों से बाहर चल रहे हैं!!";
+        }
+        currMsgObj.popUpMsg=success;
+        currMsgObj.color='green';
+        res.render("withdrawal", currMsgObj);
     }
+
+
     let note100 = atmData[0].note100;
     let note200 = atmData[0].note200;
     let note500 = atmData[0].note500;
     let note2000 = atmData[0].note2000;
+
     await AtmModel.findOneAndUpdate(
       { atmUniqueNumber: atmId },
       {
@@ -149,6 +137,7 @@ const withdrawal = async (req, res) => {
         note2000: note2000 - req.body.note2000,
       }
     );
+
     await TransactionModel.create({
       userId: req.session.user.userId,
       name: req.session.user.name,

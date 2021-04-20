@@ -24,6 +24,12 @@
                     border: 2px solid black;
                     border-radius: 5px;
             }
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+            }
         </style>
 </head>
 
@@ -39,7 +45,7 @@
                 
                  <h2 class="text-center mt-2 mb-3 mx-4">{{loginMsg}}</h3>
                  <hr >
-                <div style="color:red" class="text-center">{{error}}</div>
+                <div style="color:red" class="text-center">{{popUpMsg}}</div>
                 <form action="/login" method="POST" class="my-4">
                     <div class="mb-3">
                         <label for="bankName" class="form-label">{{bankMsg}}</label>
@@ -47,7 +53,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="userId" class="form-label">{{cardMsg}}</label>
-                        <input type="text" class="form-control" id="userId" name="userId">
+                        <input type="number" class="form-control" id="userId" name="userId">
                     </div>
                     <div class="mb-4">
                         <label for="pin" class="form-label">{{pinMsg}}</label>

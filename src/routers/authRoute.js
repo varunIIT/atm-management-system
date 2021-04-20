@@ -1,6 +1,29 @@
 const authRoute = require("express").Router();
 const axios = require("axios");
 
+
+let msgObjEng={
+    loginMsg : "Please Login to continue",
+    welMsg : "Welcome!",
+    atmMsg : "Delhi Bank ATM",
+    bankMsg : "Your Bank Name",
+    cardMsg : "Your Card No.",
+    pinMsg : "Your PIN",
+    submitMsg : "Submit",
+    popUpMsg:''
+}
+let msgObjHin={
+    loginMsg : "जारी रखने के लिए कृपया लॉग इन करें",
+    welMsg : "स्वागत हे!",
+    atmMsg : "दिल्ली बैंक एटीएम",
+    bankMsg : "आपका बैंक का नाम",
+    cardMsg : "आपका कार्ड नं.",
+    pinMsg : "आपका पिन",
+    submitMsg : "प्रस्तुत",
+    popUpMsg:''
+
+}
+
 authRoute.post("/login", async (req, res) => {
   //todo hashing
   let remote_url = null;
@@ -14,34 +37,15 @@ authRoute.post("/login", async (req, res) => {
     )
     .then((response) => {
       if (!response.data) {
-        let loginMsg = "Please Login to continue";
-        let welMsg = "Welcome!";
-        let atmMsg = "Delhi Bank ATM";
-        let bankMsg = "Your Bank Name";
-        let cardMsg = "Your Card No.";
-        let pinMsg = "Your PIN";
-        let submitMsg = "Submit";
+        
         let error = "Invalid Credentials!";
+        let choosenLanguage=msgObjEng
         if (req.session.language == "hindi") {
-          loginMsg = "जारी रखने के लिए कृपया लॉग इन करें";
-          welMsg = "स्वागत हे!";
-          atmMsg = "दिल्ली बैंक एटीएम";
-          bankMsg = "आपका बैंक का नाम";
-          cardMsg = "आपका कार्ड नं.";
-          pinMsg = "आपका पिन";
-          submitMsg = "प्रस्तुत";
           error = "अवैध प्रत्यय पत्र!";
+          choosenLanguage=msgObjHin
         }
-        res.render("login", {
-          error: error,
-          loginMsg: loginMsg,
-          welMsg: welMsg,
-          atmMsg: atmMsg,
-          bankMsg: bankMsg,
-          cardMsg: cardMsg,
-          pinMsg: pinMsg,
-          submitMsg: submitMsg,
-        });
+        choosenLanguage.popUpMsg=error
+        return res.render("login", choosenLanguage);
       }
 
       req.session.user = response.data;
@@ -50,34 +54,15 @@ authRoute.post("/login", async (req, res) => {
       res.redirect("/menu");
     })
     .catch((err) => {
-      let loginMsg = "Please Login to continue";
-      let welMsg = "Welcome!";
-      let atmMsg = "Delhi Bank ATM";
-      let bankMsg = "Your Bank Name";
-      let cardMsg = "Your Card No.";
-      let pinMsg = "Your PIN";
-      let submitMsg = "Submit";
+      
       let error = "Invalid Credentials!";
+      let choosenLanguage=msgObjEng;
       if (req.session.language == "hindi") {
-        loginMsg = "जारी रखने के लिए कृपया लॉग इन करें";
-        welMsg = "स्वागत हे!";
-        atmMsg = "दिल्ली बैंक एटीएम";
-        bankMsg = "आपका बैंक का नाम";
-        cardMsg = "आपका कार्ड नं.";
-        pinMsg = "आपका पिन";
-        submitMsg = "प्रस्तुत";
+        choosenLanguage=msgObjHin
         error = "अवैध प्रत्यय पत्र!";
       }
-      res.render("login", {
-        error: error,
-        loginMsg: loginMsg,
-        welMsg: welMsg,
-        atmMsg: atmMsg,
-        bankMsg: bankMsg,
-        cardMsg: cardMsg,
-        pinMsg: pinMsg,
-        submitMsg: submitMsg,
-      });
+      choosenLanguage.popUpMsg=error
+      res.render("login", choosenLanguage);
     });
 });
 
@@ -85,32 +70,11 @@ authRoute.get("/login", (req, res) => {
   if (!req.session.language) {
     return res.redirect("/");
   }
-
-  let loginMsg = "Please Login to continue";
-  let welMsg = "Welcome!";
-  let atmMsg = "Delhi Bank ATM";
-  let bankMsg = "Your Bank Name";
-  let cardMsg = "Your Card No.";
-  let pinMsg = "Your PIN";
-  let submitMsg = "Submit";
+  let choosenLanguage=msgObjEng;
   if (req.session.language == "hindi") {
-    loginMsg = "जारी रखने के लिए कृपया लॉग इन करें";
-    welMsg = "स्वागत हे!";
-    atmMsg = "दिल्ली बैंक एटीएम";
-    bankMsg = "आपका बैंक का नाम";
-    cardMsg = "आपका कार्ड नं.";
-    pinMsg = "आपका पिन";
-    submitMsg = "प्रस्तुत";
+    choosenLanguage=msgObjHin;
   }
-  res.render("login", {
-    loginMsg: loginMsg,
-    welMsg: welMsg,
-    atmMsg: atmMsg,
-    bankMsg: bankMsg,
-    cardMsg: cardMsg,
-    pinMsg: pinMsg,
-    submitMsg: submitMsg,
-  });
+  res.render("login",choosenLanguage);
 });
 authRoute.get("/user", (req, res) => {
   res.send({ user: req.session.user.name, lang: req.session.language });

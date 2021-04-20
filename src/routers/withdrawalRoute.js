@@ -41,9 +41,8 @@ withdrawalRoute.post("/withdrawPost", async (req, res) => {
           `http://localhost:5000/update${req.session.user.bankName}?userId=${req.session.user.userId}&amount=${req.body.amount}`
       )
       .then(() => {
-        //console.log("user updated successfully")
-        //console.log(req.session)
-      })
+        console.log("user updated successfully")
+        })
       .catch(() => {
         console.log("user is not updated,error");
       });
