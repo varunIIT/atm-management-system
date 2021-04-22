@@ -1,6 +1,7 @@
 const { withdrawal } = require("../controllers/withdrawal");
 const { AtmModel } = require("../db/atmModels");
 const axios = require("axios");
+const {msgObjHin,msgObjEng}=require('./../utils/withdrawalRouteTrans')
 
 const withdrawalRoute = require("express").Router();
 withdrawalRoute.get("/withdraw", (req, res) => {
@@ -8,25 +9,11 @@ withdrawalRoute.get("/withdraw", (req, res) => {
     return res.redirect("/");
   }
 
-  let withMsg = "Withdrawal";
-  let totalMsg = "Total Cash (in Rs.)";
-  let receipt = "Receipt";
-  let with2Msg = "Withdraw";
-  let logout = "Logout";
+  let choosenLanguage=msgObjEng;
   if (req.session.language == "hindi") {
-    withMsg = "निकासी";
-    totalMsg = "कुल नकद (रु में)";
-    receipt = "रसीद";
-    with2Msg = "निकालना";
-    logout = "लॉग आउट";
+    choosenLanguage=msgObjHin;
   }
-  res.render("withdrawal", {
-    withMsg: withMsg,
-    totalMsg: totalMsg,
-    receipt: receipt,
-    with2Msg: with2Msg,
-    logout: logout,
-  });
+  res.render("withdrawal", choosenLanguage);
 });
 withdrawalRoute.post("/withdrawPost", async (req, res) => {
   const success = await withdrawal(req, res);
@@ -41,7 +28,7 @@ withdrawalRoute.post("/withdrawPost", async (req, res) => {
           `http://localhost:5000/update${req.session.user.bankName}?userId=${req.session.user.userId}&amount=${req.body.amount}`
       )
       .then(() => {
-        console.log("user updated successfully")
+        console.log("user updated successfully");
         })
       .catch(() => {
         console.log("user is not updated,error");

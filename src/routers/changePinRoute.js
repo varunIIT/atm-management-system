@@ -1,18 +1,7 @@
 const changePinRoute = require("express").Router();
 const axios = require("axios");
+const {msgObjHin,msgObjEng,success}=require('./../utils/changePinRouteTrans')
 
-let msgObjEng={
-   headMsg : "Change PIN",
-   enterMsg : "Enter new pin :",
-   btnMsg : "Change Pin!",
-   btn2Msg : "Logout",
-}
-let msgObjHin={
-  headMsg : "पिन बदलिए",
-  enterMsg : "नया पिन दर्ज करें:",
-  btnMsg : "पिन बदलिए!",
-  btn2Msg : "लॉग आउट",
-}
 changePinRoute.get("/changePin", (req, res) => {
   if (!req.session.user) {
     return res.redirect("/");
@@ -36,14 +25,16 @@ changePinRoute.post("/changePin", (req, res) => {
     )
     .then(() => {
       
-      let error = "PIN changed successfully!";
+      
       let choosenLanguage=msgObjEng;
+      choosenLanguage.popUpMsg=success.successEng;
+
       if (req.session.language == "hindi") {
-        choosenLanguage=msgObjHin
-        error = "पिन सफलतापूर्वक बदल गया!";
+        choosenLanguage=msgObjHin;
+        choosenLanguage.popUpMsg=success.successHin;
       }
-      choosenLanguage.popUpMsg=error;
       res.render("changePin", choosenLanguage);
+      choosenLanguage.popUpMsg='';
     })
     .catch(() => {
       console.log("error changing pin");

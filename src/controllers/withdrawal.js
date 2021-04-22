@@ -1,24 +1,7 @@
 const { TransactionModel, AtmModel } = require("../db/atmModels");
 const withdrawal = async (req, res) => {
   try {
-    let currMsgObj={
-       withMsg : "Withdrawal",
-       totalMsg : "Total Cash (in Rs.)",
-       receiptMsg : "Receipt",
-       with2Msg : "Withdraw",
-       logout : "Logout",
-       popUpMsg:'',
-       color:''
-    }
-    let msgObjHin={
-      withMsg : "निकासी",
-      totalMsg : "कुल नकद (रु में)",
-      receiptMsg : "रसीद",
-      with2Msg : "निकालना",
-      logout : "लॉग आउट",
-      popUpMsg:'',
-      color:''
-    }
+    let {currMsgObj,msgObjHin}=require('./../utils/withdrawalControllerTrans')
    
     if (req.session.language == "hindi") {
       currMsgObj=msgObjHin;

@@ -1,28 +1,7 @@
 const authRoute = require("express").Router();
 const axios = require("axios");
+const {msgObjHin,msgObjEng,error}=require('./../utils/authRouteTrans')
 
-
-let msgObjEng={
-    loginMsg : "Please Login to continue",
-    welMsg : "Welcome!",
-    atmMsg : "Delhi Bank ATM",
-    bankMsg : "Your Bank Name",
-    cardMsg : "Your Card No.",
-    pinMsg : "Your PIN",
-    submitMsg : "Submit",
-    popUpMsg:''
-}
-let msgObjHin={
-    loginMsg : "जारी रखने के लिए कृपया लॉग इन करें",
-    welMsg : "स्वागत हे!",
-    atmMsg : "दिल्ली बैंक एटीएम",
-    bankMsg : "आपका बैंक का नाम",
-    cardMsg : "आपका कार्ड नं.",
-    pinMsg : "आपका पिन",
-    submitMsg : "प्रस्तुत",
-    popUpMsg:''
-
-}
 
 authRoute.post("/login", async (req, res) => {
   //todo hashing
@@ -38,14 +17,15 @@ authRoute.post("/login", async (req, res) => {
     .then((response) => {
       if (!response.data) {
         
-        let error = "Invalid Credentials!";
-        let choosenLanguage=msgObjEng
+        let choosenLanguage=msgObjEng;
+        choosenLanguage.popUpMsg=error.errorEng;
         if (req.session.language == "hindi") {
-          error = "अवैध प्रत्यय पत्र!";
-          choosenLanguage=msgObjHin
+          choosenLanguage=msgObjHin;
+          choosenLanguage.popUpMsg=error.errorHin;
         }
-        choosenLanguage.popUpMsg=error
-        return res.render("login", choosenLanguage);
+      res.render("login", choosenLanguage);
+      choosenLanguage.popUpMsg='';
+      return
       }
 
       req.session.user = response.data;
@@ -54,15 +34,15 @@ authRoute.post("/login", async (req, res) => {
       res.redirect("/menu");
     })
     .catch((err) => {
-      
-      let error = "Invalid Credentials!";
       let choosenLanguage=msgObjEng;
+      choosenLanguage.popUpMsg=error.errorEng;
       if (req.session.language == "hindi") {
-        choosenLanguage=msgObjHin
-        error = "अवैध प्रत्यय पत्र!";
+        choosenLanguage=msgObjHin;
+        choosenLanguage.popUpMsg=error.errorHin;
+        
       }
-      choosenLanguage.popUpMsg=error
       res.render("login", choosenLanguage);
+      choosenLanguage.popUpMsg='';
     });
 });
 
@@ -70,9 +50,12 @@ authRoute.get("/login", (req, res) => {
   if (!req.session.language) {
     return res.redirect("/");
   }
+  
   let choosenLanguage=msgObjEng;
+
   if (req.session.language == "hindi") {
     choosenLanguage=msgObjHin;
+   
   }
   res.render("login",choosenLanguage);
 });
