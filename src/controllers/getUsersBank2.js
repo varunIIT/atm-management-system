@@ -12,6 +12,9 @@ async function getUserBank2(userId, pin) {
   if(!(userId&&pin)){
     return null;
   }
+  if(typeof(pin)=='number'){
+    return null;
+  }
   userId=parseInt(userId);
   const users = await DummyBank2Model.find({ userId: userId });
   const user = users[0];

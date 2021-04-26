@@ -40,7 +40,7 @@ describe('controllers/withdrawal.test',()=>{
     let withdrawalStatus =  await withdrawal(req,res)
     expect(withdrawalStatus).to.equal(0)
    })
-   it('if there is no conflicts like above ,it should return boolean 1(make sure atm has cash >= 500)',async()=>{
+   it('if there are no conflicts like above ,it should return boolean 1(make sure atm has cash >= 500)',async()=>{
        req.session.user.amount='1000'
        req.body.amount='500'
        req.body.note500='5'

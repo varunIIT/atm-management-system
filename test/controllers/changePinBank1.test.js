@@ -16,7 +16,8 @@ describe('controllers/changePinBank1.test',()=>{
     })
     
     it ('should update pin successfully if arguments are valid',async()=>{
-        let changedPin=await changePinBank1('12','1')
-        expect(changedPin).to.equal(1)
+        let isPinChanged=await changePinBank1('12','1')
+        expect(isPinChanged).to.equal(1)
+
     })
 })

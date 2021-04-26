@@ -17,11 +17,17 @@ describe('controllers/getUsersBank2.test',()=>{
             expect(user).to.equal(null)
             
         })
-        it('should return a valid user',async()=>{
+        it('should return null if pin is of type number',async()=>{
+            let user=await getUserBank2('1',12)
+            expect(user).to.equal(null)
+            
+        })
+        it('should return a valid user if arguments are valid',async()=>{
             let user=await getUserBank2('12','asdf')
             expect(user).to.have.property('userId')
             expect(user).to.have.property('pin')
             expect(user).to.have.property('name')
             expect(user).to.have.property('amount')
+            expect(user).to.have.property('chequeBookRequest')
         })
 })

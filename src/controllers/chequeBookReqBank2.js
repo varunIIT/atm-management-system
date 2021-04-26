@@ -1,13 +1,17 @@
 const { DummyBank2Model } = require("../db/dummyBank2model");
 
-const chequeBookReqbank2 = async (userId) => {
+const chequeBookReqBank2 = async (userId) => {
+  if(!userId){
+    return null;
+  }
   const user = await DummyBank2Model.findOne({ userId: parseInt(userId) });
-  await DummyBank2Model.findOneAndUpdate(
+  const updatedUser=await DummyBank2Model.findOneAndUpdate(
     { userId: parseInt(userId) },
     { chequeBookRequest: !user.chequeBookRequest }
   );
+  return updatedUser;
 };
 
 module.exports = {
-  chequeBookReqbank2,
+  chequeBookReqBank2,
 };
