@@ -7,7 +7,8 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "pretty": "prettier --write \"./**/*.{js,jsx,json,html,hbs,css}\"",
-    "test":"mocha test/setup.js test/**/*.test.js"
+    "test": "mocha test/setup.js test/**/*.test.js",
+    "cover":"nyc npm run test"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "chai": "^4.3.4",
-    "mocha": "^8.3.2"
+    "mocha": "^8.3.2",
+    "nyc": "^15.1.0"
   }
 }

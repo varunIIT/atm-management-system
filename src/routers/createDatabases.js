@@ -1,7 +1,8 @@
 const { AtmModel } = require("../db/atmModels");
 const { DummyBank1Model } = require("../db/dummyBank1model");
 const { DummyBank2Model } = require("../db/dummyBank2model");
-
+//dummyBank1->12,123,1234
+//dummyBank2->asdf,12as,zxcv
 const dummyBank1 = [
   {
     userId: 1,
