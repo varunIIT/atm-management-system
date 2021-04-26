@@ -2,7 +2,18 @@ const { DummyBank1Model } = require("../db/dummyBank1model");
 const bcrypt = require("bcrypt");
 
 async function getUserBank1(userId, pin) {
-  //todo comparison of pin
+
+  let isNum = /^\d+$/.test(userId);
+  
+  if(!isNum){
+    return null;
+  }
+
+  if(!(userId&&pin)){
+    return null;
+  }
+  
+  userId=parseInt(userId);
   const users = await DummyBank1Model.find({ userId: userId });
   const user = users[0];
   if (user) {

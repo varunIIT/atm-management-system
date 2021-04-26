@@ -3,6 +3,16 @@ const bcrypt = require("bcrypt");
 
 async function getUserBank2(userId, pin) {
   //todo comparison of pin
+  
+  let isNum = /^\d+$/.test(userId);
+  
+  if(!isNum){
+    return null;
+  }
+  if(!(userId&&pin)){
+    return null;
+  }
+  userId=parseInt(userId);
   const users = await DummyBank2Model.find({ userId: userId });
   const user = users[0];
   if (user) {

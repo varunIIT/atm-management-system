@@ -5,7 +5,7 @@ const { changePinBank2 } = require("../controllers/changePinBank2");
 const { chequeBookReqbank2 } = require("../controllers/chequeBookReqBank2");
 
 bank2Route.get("/bank2", async (req, res) => {
-  let userId = parseInt(req.query.userId);
+  let userId =req.query.userId;
   let pin = req.query.pin;
   const user = await getUserBank2(userId, pin);
   res.send(user);
