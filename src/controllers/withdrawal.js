@@ -39,7 +39,7 @@ const withdrawal = async (req, res) => {
     
     
     else if (amount > atmAmount) {
-      let error = "Please 'red'uce your amount!";
+      let error = "Please reduce your amount!";
       if (req.session.language == "hindi") {
         error = "कृपया अपनी राशि कम करें!";
       }
