@@ -15,6 +15,7 @@ let req={
         note100:'0',
         note200:'0',
         note500:'0',
+        note1000:'0',
         note2000:'0'}        // withdrawal amount
                      
 }
@@ -43,7 +44,7 @@ describe('controllers/withdrawal.test (if language is hindi)',()=>{
    it('it should return 1,if there are no conflicts and receipt is true,(make sure atm has cash >= 500)',async()=>{
        req.session.user.amount='1000'
        req.body.amount='500'
-       req.body.note500='5'
+       req.body.note500='1'
        req.body.receipt='1'
        let withdrawalStatus=await withdrawal(req,res)
        expect(withdrawalStatus).to.equal(1)
@@ -51,7 +52,7 @@ describe('controllers/withdrawal.test (if language is hindi)',()=>{
    it('it should return 1,if there are no conflicts and receipt is false,(make sure atm has cash >= 500)',async()=>{
     req.session.user.amount='1000'
     req.body.amount='500'
-    req.body.note500='5'
+    req.body.note500='1'
     req.body.receipt='0'
     let withdrawalStatus=await withdrawal(req,res)
     expect(withdrawalStatus).to.equal(1)
@@ -82,7 +83,7 @@ describe('controllers/withdrawal.test (if language is english)',()=>{
        it('it should return 1,if there are no conflicts and receipt is true,(make sure atm has cash >= 500)',async()=>{
            req.session.user.amount='1000'
            req.body.amount='500'
-           req.body.note500='5'
+           req.body.note500='1'
            req.body.receipt='1'
            let withdrawalStatus=await withdrawal(req,res)
            expect(withdrawalStatus).to.equal(1)
@@ -90,7 +91,7 @@ describe('controllers/withdrawal.test (if language is english)',()=>{
        it('it should return 1,if there are no conflicts and receipt is false,(make sure atm has cash >= 500)',async()=>{
         req.session.user.amount='1000'
         req.body.amount='500'
-        req.body.note500='5'
+        req.body.note500='1'
         req.body.receipt='0'
         let withdrawalStatus=await withdrawal(req,res)
         expect(withdrawalStatus).to.equal(1)
