@@ -1,8 +1,10 @@
 const { AtmModel } = require("../db/atmModels");
 const { DummyBank1Model } = require("../db/dummyBank1model");
 const { DummyBank2Model } = require("../db/dummyBank2model");
+const { DummyBank3Model } = require("../db/dummyBank3model");
 //dummyBank1->12,123,1234
 //dummyBank2->asdf,12as,zxcv
+//dummyBank3->1943,8787,5432
 const dummyBank1 = [
   {
     userId: 1,
@@ -49,18 +51,44 @@ const dummyBank2 = [
     chequeBookRequest: false,
   },
 ];
+const dummyBank3 = [
+  {
+    userId: 1,
+    pin: "$2b$10$8kW.XMYwynFBwRQAS5ZCcuvkyIuujb//a1Sl9TQf1AoiwgKSpfcvi",
+    name: "Riya",
+    amount: 70000,
+    chequeBookRequest: false,
+  },
+  {
+    userId: 2,
+    pin: "$2b$10$A2yBpWmPaAtbePtfhbXRVeHstaPJisiaYB1e9ukkvuyK5dw/VB.5K",
+    name: "Vijay",
+    amount: 50000,
+    chequeBookRequest: false,
+  },
+  {
+    userId: 3,
+    pin: "$2b$10$7J3dshnMK.yijcyQ9nnofOfELbY6MHORuyDHvibH3kjmTXsQB/tWe",
+    name: "Ankur",
+    amount: 55000,
+    chequeBookRequest: false,
+  },
+];
+
 const createDatabasesRoute = require("express").Router();
 createDatabasesRoute.post("/create", async (req, res) => {
   await DummyBank1Model.insertMany(dummyBank1);
   await DummyBank2Model.insertMany(dummyBank2);
+  await DummyBank3Model.insertMany(dummyBank3);
   await AtmModel.create({
     atmUniqueNumber: 1212,
-    atmAmount: 300000,
+    atmAmount: 410000,
     receipt: 176,
     note100: 100,
     note200: 136,
-    note2000: 97,
     note500: 118,
+    note1000: 110,
+    note2000: 97
   });
   res.send("done");
 });

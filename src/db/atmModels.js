@@ -8,6 +8,7 @@ const atmSchema = new schema({
   note100: Number,
   note200: Number,
   note500: Number,
+  note1000: Number,
   note2000: Number,
 });
 const transactionSchema = new schema({

@@ -10,6 +10,7 @@ const { authRoute } = require("./src/routers/authRoute");
 const { balEnqRoute } = require("./src/routers/balEnqRoute");
 const { bank1Route } = require("./src/routers/bank1Routes");
 const { bank2Route } = require("./src/routers/bank2Routes");
+const { bank3Route } = require("./src/routers/bank3Routes");
 const { changePinRoute } = require("./src/routers/changePinRoute");
 const { chequeBookRouter } = require("./src/routers/chequeBookRouter");
 const { createDatabasesRoute } = require("./src/routers/createDatabases");
@@ -34,6 +35,7 @@ app.use("/", express.static(__dirname + "/src/public"));
 app.use("/", authRoute);
 app.use("/", bank1Route);
 app.use("/", bank2Route);
+app.use('/',bank3Route)
 app.use("/", withdrawalRoute);
 app.use("/", changePinRoute);
 app.use("/", balEnqRoute);

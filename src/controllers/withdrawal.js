@@ -108,6 +108,7 @@ const withdrawal = async (req, res) => {
     let note100 = atmData[0].note100;
     let note200 = atmData[0].note200;
     let note500 = atmData[0].note500;
+    let note1000=atmData[0].note1000;
     let note2000 = atmData[0].note2000;
 
     await AtmModel.findOneAndUpdate(
@@ -117,6 +118,7 @@ const withdrawal = async (req, res) => {
         note100: note100 - req.body.note100,
         note200: note200 - req.body.note200,
         note500: note500 - req.body.note500,
+        note1000: note1000-req.body.note1000,
         note2000: note2000 - req.body.note2000,
       }
     );
