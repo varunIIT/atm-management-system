@@ -1,4 +1,4 @@
-const { DummyBank1Mode3 } = require("../db/dummyBank3model");
+const { DummyBank3Model } = require("../db/dummyBank3model");
 
 const chequeBookReqBank3 = async (userId) => {
   if(!userId){
